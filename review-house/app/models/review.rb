@@ -1,2 +1,2 @@
-class Review < ActiveRecord:Base
+class Review < ActiveRecord::Base
 end
