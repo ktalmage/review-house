@@ -13,20 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20200330204733) do
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "restaurant_reviews", force: :cascade do |t|
     t.string  "person_name"
     t.string  "review_title"
-    t.string  "activity_type"
+    t.string  "food_type"
     t.text    "rating_description"
-    t.integer "rating"
+    t.integer "overrall_rating"
+    t.integer "noise_level"
+    t.string  "food_quality"
+    t.string  "service_quality"
     t.boolean "is_recommended"
     t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "name"
-    t.string "email"
     t.string "password_digest"
   end
 
