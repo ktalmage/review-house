@@ -4,38 +4,41 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
-    set :views, 'app/views'
+    set :views, Proc.new { File.join(root, "../views/") }
     enable :sessions
     set :session_secret, "FiBrIxPeRg94!"
   end
 
   get "/" do
     erb :index
+    
   end
 
-  get "registrations/signup" do
-    erb "/registrations/signup"
+  get "/registrations/signup" do
+    erb :"registrations/signup"
   end
 
-  post "registrations/signup" do
+  post "/registrations/signup" do
+    
     if params[:username].empty?
-     
-      redirect to 'failure'
+      redirect to '/failure'
     end
 
-    user = User.new(:username=> params[:username],:password=> params[:password])
+    @user = User.new(:username=> params[:username],:password=> params[:password])
+    
     if user.save
-      redirect 'sessions/login'
+      redirect '/sessions/login'
     else
       redirect '/failure'
     end
   end
 
-  get '/login' do
-    erb :login
+  get '/sessions/login' do
+    erb :"sessions/login"
+    
   end
 
-  post "sessions/login" do
+  post "/sessions/login" do
     user = User.find_by(:username => params[:username])
     
     if user && user.authenticate(params[:password])
