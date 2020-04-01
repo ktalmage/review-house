@@ -1,10 +1,27 @@
 <h2>Add a New Review:</h2>
     
     <form method="POST" action="/reviews">
-    <label> Reviewers's Name: </label>
+    <label><b>Reviewers's Name:</b> </label>
     <input type="text" id="" name="person_name"></p>
-    <label> Review's Title: </label>
+    <label><b>Review's Title:</b></label>
     <input type="text" name="title">
+    <label><b>Type of Food:</b></label>
+    <select id="food_type">
+        <option value="american">American</option>
+        <option value="italian">Italian</option>
+        <option value="japanese">Japanese</option>
+        <option value="thai">Thai</option>
+        <option value="mexican">Mexican</option>
+        <option value="spanish">Spanish</option>
+        <option value="indian">Indian</option>
+        <option value="mediterranean">Mediterranean</option>
+      </select>
+      <br>
+      <br>
+      <label><b>Description:</b> </label>
+    <br />
+    <textarea id="description" rows="10" cols="50">
+    </textarea>
     <input type="submit" value="Submit">
     </form>
   

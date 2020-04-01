@@ -1,33 +1,32 @@
-
 class UsersController < ApplicationController
-    get "/users/new" do
-        erb :"users/new"
+    
+  get "/users/new" do
+    erb :'users/new'
+  end
         
-      end
+  post "/users/new" do
     
-    post "/users/new" do
+  if params[:username].empty?
+    redirect to '/failure'
+  end
     
-        if params[:username].empty?
-          redirect to '/failure'
-        end
-    
-        @user = User.new(:username=> params[:username],:password=> params[:password], :name=> params[:name])
+    @user = User.new(:username=> params[:username],:password=> params[:password], :name=> params[:name])
       
         if @user.save
           
-          redirect '/users/login'
+          redirect '/reviews/index'
         else
           redirect '/failure'
         end
       end
     
-    get '/users/login' do
+  get '/users/login' do
         erb :"users/login"
         
       end
     
-    post "/users/login" do
-        @user = User.find_by(:username => params[:username])
+  post "/users/login" do
+    @user = User.find_by(:username => params[:username])
         
         if @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
@@ -35,7 +34,7 @@ class UsersController < ApplicationController
         else
           redirect "/failure"
         end
-      end
+  end
     
       get "/failure" do
         erb :failure
