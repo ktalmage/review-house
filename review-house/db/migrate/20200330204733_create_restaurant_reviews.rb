@@ -2,9 +2,9 @@ class CreateRestaurantReviews < ActiveRecord::Migration
   def change
     create_table :restaurant_reviews do |t|
       t.string :person_name
-      t.string :review_title
+      t.string :title
       t.string :food_type
-      t.text :rating_description
+      t.text :description
       t.integer :overrall_rating
       t.integer :noise_level
       t.string  :food_quality

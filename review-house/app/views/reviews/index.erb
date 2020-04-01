@@ -1,0 +1,7 @@
+<% @reviews.each do |review| %>
+  <%= review.name %><br />
+  <%= review.title %> <br />
+  <a href="/review/<%=review.id%>/edit">Edit</a>
+  <br />
+  <br />
+<% end %>
