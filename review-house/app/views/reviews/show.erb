@@ -1,0 +1,12 @@
+<h3>Reviews Show</h3>
+<p><%=@restaurant.id%></p>
+<p>person responsible: <%=@restaurant.user.name%></p>
+<p>task: <%=@restaurant.%></p>
+<p>status: <%= @restaurant.is_recommended? "Check it out!": " Don't Go!!" %></p>
+
+<a href="/reviews/<%=@restaurant.id%>/edit"><button> edit </button></a>
+
+<form action="/restaurants/<%= @restaurant.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete">
+</form>
