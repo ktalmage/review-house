@@ -16,4 +16,4 @@ The gem is available as open source under the terms of the https://opensource.or
 
 # code of conduct
 
-Everyone interacting in the review-house codebases, issue trackers, chat rooms and mailing lists is expected to follow the https://github.com/ktalmage/review-house/review-house/blob/master/CODE_OF_CONDUCT.md
+Everyone interacting in the review-house codebases, issue trackers, chat rooms and mailing lists is expected to follow the https://github.com/ktalmage/review-house/blob/master/CODE_OF_CONDUCT.md
