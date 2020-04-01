@@ -13,16 +13,16 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: rgb(173, 230, 176);
-    color: #333;
+    background-color: rgb(142, 159, 185);
+    color: rgb(73, 72, 72);
     font-family: Sans-Serif;
     line-height: 18px;
   }
 
   .wrapper {
-    background: #fff;
+    background: rgba(111, 211, 189, 0.582);
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 10px rgba(161, 66, 66, 0.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
     margin: 16px auto;
     max-width: 960px;

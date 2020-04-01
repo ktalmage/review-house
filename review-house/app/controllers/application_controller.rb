@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
     @user = User.new(:username=> params[:username],:password=> params[:password])
     
-    if user.save
+    if @user.save
       redirect '/sessions/login'
     else
       redirect '/failure'
@@ -39,9 +39,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/sessions/login" do
-    user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
     
-    if user && user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/"
     else
@@ -60,8 +60,11 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!session[:user_id]
+      !!current_user
     end
 
-end
+    def current_user
+      @user ||=User.find(session[:user_id]) if session[:user_id]
+    end
+  end
 end
