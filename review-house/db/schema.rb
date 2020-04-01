@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20200330204733) do
     t.string  "food_type"
     t.text    "description"
     t.integer "overrall_rating"
-    t.integer "noise_level"
+    t.string  "noise_level"
     t.string  "food_quality"
     t.string  "service_quality"
     t.boolean "is_recommended"
