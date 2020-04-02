@@ -1,6 +1,7 @@
-<% @restaurants.each do |restraurant| %>
-  <%= restaurant.name %><br />
+<% @restaurants.each do |restaurant| %>
+  <%= restaurant.person_name %><br />
   <%= restaurant.title %> <br />
+  <%= restaurant.description%><br />
   <a href="/review/<%=restaurant.id%>/edit">Edit</a>
   <br />
   <br />

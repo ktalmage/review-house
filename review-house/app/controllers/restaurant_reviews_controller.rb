@@ -1,30 +1,49 @@
 class RestaurantReviewsController < ApplicationController
 
-    get "/reviews/index" do
+    get "/reviews" do
+        redirect_if_not_logged_in
         @restaurants = RestaurantReview.all
         erb :'reviews/index'
-    end
-
-    get "/reviews/new" do
-        erb :'reviews/new'
-    end
-
-    post "/reviews" do
-        @restaurant = RestaurantReview.create(:person_name=> params[:person_name],:title=> params[:title],:description=> params[:description], 
-        :overrall_rating=> params[:overrall_rating],:noise_level=> params[:noise_level],:food_quality=> params[:food_quality],:service_quality=> [:service_quality],
-        :is_recommended=> params[:is_recommended],:user_id=> params[:user_id])
-        redirect to "/reviews/#{@restaurant.id}"
         
-    end
-
-    post "reviews/:id" do
-        @restaurant = RestaurantReview.find(params[:id])
-        redirect "/reviews/#{@restaurant.id}"
-        binding.pry
-    end
-
-    get "/reviews/:id/edit" do
+      end
+    
+      get "/reviews/new" do
+        redirect_if_not_logged_in
+        # @error_message = params[:error]
+        erb :'reviews/new'
+      end
+    
+      get "/review/:id/edit" do
+        redirect_if_not_logged_in
+        # @error_message = params[:error]
         @restaurant = RestaurantReview.find(params[:id])
         erb :'reviews/edit'
+      end
+    
+      post "/review/:id" do
+        redirect_if_not_logged_in
+        @restaurant = RestaurantReview.find(params[:id])
+        unless RestaurantReview.valid_params?(params)
+          redirect "/review/#{@restaurant.id}/edit?error=invalid restaurant"
+        end
+        @restaurant.update(params.select{|k|k=="name" || k=="capacity"})
+        redirect "/review/#{@restaurant.id}"
+      end
+    
+      get "/review/:id" do
+        redirect_if_not_logged_in
+        @restaurant = RestaurantReview.find(params[:id])
+        erb :'reviews/show'
+      end
+    
+      post "/reviews" do
+        redirect_if_not_logged_in
+    
+        unless RestaurantReview.valid_params?(params)
+          redirect "/reviews/new?error=invalid restaurant"
+        end
+        RestaurantReview.create(params)
+        redirect "/reviews"
+      end
     end
-end
+

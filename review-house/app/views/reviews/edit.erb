@@ -1,9 +1,9 @@
-<h1>Edit <%= @restaurant.name %></h1>
+<h1>Edit <%= @restaurant.title %></h1>
 
-<form action="/reviews/<%=@restaurant.id %>" method="POST">
+<form action="/review/<%=@restaurant.id %>" method="POST">
   <input type="hidden" name="_method" value="patch">
-  <label> Review Title </label>
-  <input type="text" name="person_name" value="<%=@restaurant.title %>"> 
+  <label> Reviewer's Name: </label>
+  <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
 
   <label> Review Description </label>
   <input type="text_area" name="description" value="<%=@restaurant.description %>"> 

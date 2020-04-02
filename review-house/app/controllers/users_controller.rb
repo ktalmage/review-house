@@ -1,52 +1,62 @@
 class UsersController < ApplicationController
     
-  # get '/users/:id' do
-  #   if !logged_in?
-  #     redirect '/reviews'
-  #   end
-  # end
-  get "/users/new" do
-    erb :'users/new'
+  get '/users/:id' do
+    redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/login'
+      end
+    
+    @user = User.find_by(id: params[:id])
+    
+    if !@user.nil? && @user == current_user
+      erb :'users/show'
+    else
+      redirect '/signup'
+    end
   end
-        
-  post "/users/new" do
-    
-  if params[:username].empty?
-    redirect to '/failure'
+
+    get '/signup' do
+      if !session[:id]
+        erb :'users/signup'
+      else
+        redirect to '/reviews/new'
+      end
+    end
+
+    post '/signup' do
+      if params[:username] == "" || params[:password] == ""
+        redirect to '/signup'
+      else
+        @user = User.create(:username => params[:username], :password => params[:password], :name=> params[:name])
+        session[:user_id] = @user.id
+        redirect '/reviews/new'
+      end
+    end
+
+    get '/login' do
+      if !session[:user_id]
+        erb :'users/login'
+      else
+        redirect '/reviews/show'
+      end
+    end
+
+    post '/login' do
+      @user = User.find_by(:username => params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/reviews/show"
+    else
+      redirect to '/signup'
+    end
   end
-    
-    @user = User.new(:username=> params[:username],:password=> params[:password], :name=> params[:name])
-      
-        if @user.save
-          
-          redirect '/reviews/index'
-        else
-          redirect '/failure'
-        end
-      end
-    
-  get '/users/login' do
-        erb :"users/login"
-        
-      end
-    
-  post "/users/login" do
-    @user = User.find_by(:username => params[:username])
-        
-        if @user && @user.authenticate(params[:password])
-          session[:user_id] = @user.id
-          redirect "/reviews"
-        else
-          redirect "/failure"
-        end
-      end
-    
-      get "/failure" do
-        erb :failure
-      end
-    
-      get "/logout" do
-        session.clear
-        redirect "/"
-      end
+
+  get '/logout' do
+    if session[:user_id] != nil
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
+  end
 end
