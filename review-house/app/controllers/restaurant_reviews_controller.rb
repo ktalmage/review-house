@@ -26,7 +26,7 @@ class RestaurantReviewsController < ApplicationController
         unless RestaurantReview.valid_params?(params)
           redirect "/review/#{@restaurant.id}/edit?error=invalid restaurant"
         end
-        @restaurant.update(params.select{|k|k=="name" || k=="capacity"})
+        @restaurant.update(params)
         redirect "/review/#{@restaurant.id}"
       end
     

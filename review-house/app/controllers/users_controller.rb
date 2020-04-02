@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/reviews/show"
     else
-      redirect to '/signup'
+      redirect to '/'
     end
   end
 
