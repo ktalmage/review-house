@@ -1,12 +1,5 @@
 <h3>Reviews Show</h3>
-<p><%=@restaurant.id%></p>
-<p>User Name: <%=@restaurant.user.name%></p>
-<p>Title: <%=@restaurant.title%></p>
-<p>status: <%= @restaurant.is_recommended? "Check it out!": " Don't Go!!" %></p>
-
-<a href="/reviews/<%=@restaurant.id%>/edit"><button> edit </button></a>
-
-<form action="/restaurants/<%= @restaurant.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="delete">
-</form>
+<ul>
+<%@user.restaurant_reviews.each do |review|%>
+    <li><a href="/reviews/<%=review.id%>"><%=review.title%></a></li>
+    <%end%>
