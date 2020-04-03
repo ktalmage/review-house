@@ -1,9 +1,10 @@
 <h1>"Welcome, <%=@user.name%>!"
 
 <h2>Please select an option below:</h2>
+<a href="/reviews/new">Add a Review</a>
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
-    <li><%=review.id%>"><%=review.title%>Edit A Review</li>
+<b>My Reviews:</b><br><li><%=review.id%> ) <%=review.title%></li>
     </ul>
     <% end %>
 <a href="/logout">Log Out</a>
