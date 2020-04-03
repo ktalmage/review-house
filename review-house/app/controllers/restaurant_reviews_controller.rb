@@ -1,37 +1,51 @@
 class RestaurantReviewsController < ApplicationController
 
-    get "/reviews/:id" do
-        # redirect_if_not_logged_in
-        @restaurants = RestaurantReview.all
+    get "/reviews" do
+      if logged_in?
+        @user = current_user
+        @restaurants = @user.restaurant_reviews
+        # @restaurants = RestaurantReview.all
         erb :'reviews/index'
-       
+      else
+        redirect '/login'
+      end
     end
 
+    get "/reviews/new" do
+       
+      @error_message = params[:error]
+      erb :'reviews/new'
+    end
+
+    get "/reviews/:id" do
+        
+      @restaurant = RestaurantReview.find(params[:id])
+      erb :"reviews/#{@restaurant.id}"
+    end
+    
     post "/reviews" do
-        # redirect_if_not_logged_in
-        @restaurants = RestaurantReview.all
-        unless @restaurants.valid_params?(params)
-          redirect "/failure"
+       restaurants = RestaurantReview.where(title:params[:title])
+       if restaurants.empty
+         restaurant = RestaurantReview.create(params[:restaurant])
+
+        if restaurant.save
+        redirect "/reviews/#{restaurant.id}"
+        else
+          redirect "/reviews/new"
         end
-        @restaurants.create(params)
-        redirect "/reviews/#{@restaurants.id}"
       end
     
-      get "/reviews/new" do
-        # redirect_if_not_logged_in
-        @error_message = params[:error]
-        erb :'reviews/new'
-      end
+      
     
       get "/reviews/:id/edit" do
-        # redirect_if_not_logged_in
+       
         @error_message = params[:error]
         @restaurant = RestaurantReview.find(params[:id])
-        erb :"reviews/#{@restaurant.id}/edit"
+        erb :"reviews/edit"
       end
     
-      post "/review/:id" do
-        # redirect_if_not_logged_in
+      patch "/review/:id" do
+       
         @restaurant = RestaurantReview.find(params[:id])
         unless RestaurantReview.valid_params?(params)
           redirect "/reviews/#{@restaurant.id}"
@@ -39,13 +53,6 @@ class RestaurantReviewsController < ApplicationController
         @restaurant.update(params)
         redirect "/reviews/#{@restaurant.id}"
       end
-    
-      get "/review/:id" do
-        # redirect_if_not_logged_in
-        @restaurant = RestaurantReview.find(params[:id])
-        erb :"reviews/#{@restaurant.id}"
-      end
-    
-      
     end
+  end
 
