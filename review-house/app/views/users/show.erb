@@ -9,7 +9,7 @@
 <br>
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
-<li><%=review.id%> ) <%=review.title%></li>
+<li><%=review.id%> ) <%=review.title%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
     </ul>
     <% end %>
 <br>

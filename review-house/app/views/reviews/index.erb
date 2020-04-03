@@ -1,6 +1,6 @@
-<h3>Reviews Show</h3>
+<h3>Reviews Index</h3>
 <ul>
-<%user.restaurant_reviews.each do |review|%>
+<%@restaurants.each do |review|%>
     <li><a href="/reviews/<%=review.id%>"><%=review.title%></a></li>
     <%end%>
 </ul>

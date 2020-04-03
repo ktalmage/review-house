@@ -1,6 +1,6 @@
 <h1>Edit <%= @restaurant.title %></h1>
 
-<form action="/reviews/<%=@restaurant.id %>" method="POST">
+<form action="/reviews/<%=@restaurant.id %>/edit" method="POST">
   <input type="hidden" name="_method" value="patch">
   <label> Reviewer's Name: </label>
   <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
@@ -8,10 +8,10 @@
   <br>
   <label> Review Description </label>
   <br>
-  <textarea id="description" rows="10" cols="50" value="<%=@restaurant.description %>"> 
+  <textarea id="description" name="description" rows="10" cols="50" value="<%=@restaurant.description %>"> 
   </textarea>
   <input type="submit" value="Update">
   <br>
   <a href="/logout">Logout</a>
-  <a href="/users/<%=@user.id%>%">Home</a>
+  
 </form>
