@@ -1,6 +1,7 @@
 <h1>"Welcome, <%=@user.name%>!"
 
 <h2>Please select an option below:</h2>
+<a href="/reviews">See All Reviews</a><br>
 <a href="/reviews/new">Add a Review</a>
 <br>
 <br>
@@ -9,7 +10,7 @@
 <br>
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
-<li><%=review.id%> ) <%=review.title%><br><u><b>Description:</b></u><br><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+<li><%=review.id%> ) <b><%=review.title%></b><br><u><b>Description:</b></u><br><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
     </ul>
     <% end %>
 <br>

@@ -1,7 +1,6 @@
 <h3>Reviews Index</h3>
 <ul>
 <%@restaurants.each do |review|%>
-    <li><a href="/reviews/<%=review.id%>"><%=review.title%></a></li>
+    <li><%=review.person_name%><br><a href="/users/<%=@user.id%>"><%=review.title%></a></li>
     <%end%>
-</ul>
 <a href="/">Home</a>

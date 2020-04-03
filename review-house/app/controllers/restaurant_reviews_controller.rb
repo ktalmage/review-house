@@ -6,6 +6,7 @@ class RestaurantReviewsController < ApplicationController
         @restaurants = RestaurantReview.all
         # @restaurants = RestaurantReview.all
         erb :'reviews/index'
+        
       else
         redirect '/login'
       end
@@ -40,27 +41,22 @@ class RestaurantReviewsController < ApplicationController
       end
     end
     
+    get "/reviews/:id/edit" do
+      @error_message = params[:error]
+      @restaurant = RestaurantReview.find(params[:id])
+      erb :"reviews/edit"
+    end
+    
+    patch "/review/:id" do
       
-    
-      get "/reviews/:id/edit" do
-       
-        @error_message = params[:error]
-        @restaurant = RestaurantReview.find(params[:id])
-        erb :"reviews/edit"
+        if @restaurant.update(params)
+        redirect "/reviews/#{@restaurant.id}/edit"
+        else
         
-      end
-    
-      patch "/review/:id" do
-       if is_logged_in?
-        @restaurant = RestaurantReview.find(params[:id])
-        
-          redirect "/reviews/#{@restaurant.id}"
-        end
-        @restaurant.update(params)
         redirect "/reviews/#{@restaurant.id}"
-      end
+        end
+    end
     
-  
     delete '/reviews/:id' do
       find_review
       if @restaurant.destroy

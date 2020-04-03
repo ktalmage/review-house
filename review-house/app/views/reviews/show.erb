@@ -1,7 +1,7 @@
 <h3>Reviews Show</h3>
 <ul>
 <%@restaurants.each do |review|%>
-    <li><a href="/reviews/<%=review.id%>"><%=review.title%></a></li>
+    <li><a href="/reviews/show"><%=review.title%></a></li>
     <%end%>
 </ul>
 <a href="/">Home</a>
