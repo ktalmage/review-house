@@ -9,7 +9,7 @@ class CreateRestaurantReviews < ActiveRecord::Migration
       t.string :noise_level
       t.string  :food_quality
       t.string :service_quality
-      t.boolean :is_recommended 
+      t.boolean :is_recommended
       t.integer :user_id
     end
   end

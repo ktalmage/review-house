@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     
   get '/users/:id' do
-    redirect_if_not_logged_in
+    # redirect_if_not_logged_in
       if !logged_in?
         redirect '/login'
       end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     
     if !@user.nil? && @user == current_user
       erb :'users/show'
-    else
+     else
       redirect '/signup'
     end
   end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       else
         @user = User.create(:username => params[:username], :password => params[:password], :name=> params[:name])
         session[:user_id] = @user.id
-        redirect '/reviews/new'
+        redirect "/users/#{session[:user_id]}"
       end
     end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       if !session[:user_id]
         erb :'users/login'
       else
-        redirect '/reviews'
+        redirect "/users/#{session[:user_id]}"
       end
     end
 
@@ -46,9 +46,9 @@ class UsersController < ApplicationController
       @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/reviews/show"
+      redirect "/users/#{@user.id}"
     else
-      redirect to '/'
+      redirect to '/failure'
     end
   end
 
@@ -59,5 +59,9 @@ class UsersController < ApplicationController
     else
       redirect to '/'
     end
+  end
+
+  get '/failure' do
+    erb :failure
   end
 end
