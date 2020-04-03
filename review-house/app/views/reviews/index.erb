@@ -1,9 +1,7 @@
-<% @restaurants.each do |restaurant| %>
-  <%= restaurant.person_name %><br />
-  <%= restaurant.title %> <br />
-  <%= restaurant.description%><br />
-  <a href="/reviews/<%=restaurant.id%>/edit">Edit</a>
-  <br />
-  <br />
-<% end %>
+<h3>Reviews Show</h3>
+<ul>
+<%user.restaurant_reviews.each do |review|%>
+    <li><a href="/reviews/<%=review.id%>"><%=review.title%></a></li>
+    <%end%>
+</ul>
 <a href="/">Home</a>
