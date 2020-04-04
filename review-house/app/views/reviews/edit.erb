@@ -2,18 +2,69 @@
 
 <form action="/reviews/<%=@restaurant.id %>/edit" method="POST">
   <input type="hidden" name="_method" value="patch">
-  <label> Reviewer's Name: </label>
+  <label><b>Reviewer's Name:</b></label>
   <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
   <br>
   <br>
-  <label> Review Title: </label>
+  <label><b>Review Title:</b> </label>
   <input type="text" name="title" value="<%=@restaurant.title %>"> 
   <br>
   <br>
-  <label> Review Description </label>
+  <label><b>Type of Food:</b></label>
+    <select id="food_type" name="food_type">
+        <option value="american">American</option>
+        <option value="italian">Italian</option>
+        <option value="japanese">Japanese</option>
+        <option value="thai">Thai</option>
+        <option value="mexican">Mexican</option>
+        <option value="spanish">Spanish</option>
+        <option value="indian">Indian</option>
+        <option value="mediterranean">Mediterranean</option>
+      </select>
+    <br>
+    <br>
+  <label><b>Review Description:</b></label>
   <br>
   <textarea type="text"  name="description" rows="10" cols="50" value="<%=@restaurant.description %>"> 
   </textarea>
+  <br>
+  <label><b>Overrall Rating</b></label>
+    <br>
+    <input type="radio" id="1" name="overrall_rating" value= 1>1
+    <input type="radio" id="2" name="overrall_rating" value= 2>2
+    <input type="radio" id="3" name="overrall_rating" value= 3>3
+    <input type="radio" id="4" name="overrall_rating" value= 4>4
+    <input type="radio" id="5" name="overrall_rating" value= 5>5
+    <br>
+    <br>
+  <label><b>Noise Level</b></label>
+    <br>
+    <input type="radio" id="quiet" name="noise_level" value= "quiet">Quiet
+    <input type="radio" id="acceptable" name="noise_level" value= "acceptable">Acceptable
+    <input type="radio" id="loud" name="noise_level" value= "too loud">Too Loud
+    <br>
+    <br>
+    <label><b>How was the food quality?</b>
+    <br>
+    <input type="radio" id="amazing" name="food_quality" value= "amazing">Amazing
+    <input type="radio" id="good" name="food_quality" value= "good">Good
+    <input type="radio" id="soso" name="food_quality" value= "so-so">So-So
+    <input type="radio" id="terrible" name="food_quality" value= "terrible">Terrible
+    <br>
+    <br>
+    <label><b>How was the service?</b>
+    <br>
+    <input type="radio" id="excellent" name="service_quality" value= "excellent">Excellent
+    <input type="radio" id="good" name="service_quality" value= "good">Good
+    <input type="radio" id="acceptable" name="service_quality" value= "acceptable">Acceptable
+    <input type="radio" id="notgood" name="service_quality" value= "not good">Not Good
+    <br>
+    <br>
+    <label><b>Would you recommend this to others?:</b></label>
+    <select id="is_recommended" name="is_recommended">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
   <input type="submit" value="Update">
   <br>
   <a href="/logout">Logout</a>

@@ -4,9 +4,7 @@ class RestaurantReviewsController < ApplicationController
       if logged_in?
         @user = current_user
         @restaurants = RestaurantReview.all
-        # @restaurants = RestaurantReview.all
         erb :'reviews/index'
-        
       else
         redirect '/login'
       end
