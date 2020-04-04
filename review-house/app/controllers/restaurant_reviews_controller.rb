@@ -66,7 +66,7 @@ class RestaurantReviewsController < ApplicationController
       end
     
     
-    delete '/reviews/:id' do
+    delete '/reviews/:id/delete' do
       if logged_in?
         find_review
       if @restaurant.user == current_user(session)

@@ -11,9 +11,14 @@
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
 <br>
-<li><b>Review Title:</b><%=review.title%><br><br/><u><b>Description:</b></u><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+<li><b>Review Title:</b><%=review.title%><br><br/><u><b>Description:</b></u><%=review.description%></li><form action="/reviews/<%=review.id%>/edit" method="GET">
+<input type="submit" value="Edit Review">
+</form>
 <br>
-<a href="/reviews/<%=review.id%>/delete">Delete Review</a>
+<form action="/reviews/<%=review.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Delete Review"/>
     </ul>
+</form>
     <% end %>
 <br>
