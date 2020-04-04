@@ -1,8 +1,8 @@
-<h2>Add a New Review:</h2>
+<h2> Hey <%=@user.name%>! Add a New Review Below:</h2>
     
     <form method="POST" action="/reviews">
     <label><b>Reviewer's Name:</b> </label>
-    <p><input type="text" id="" name="person_name"></p>
+    <p><input type="text" id="" name="person_name" value=<%=@user.name%>></p>
     <label><b>Review's Title:</b></label>
     <input type="text" name="title">
     <label><b>Type of Food:</b></label>

@@ -1,7 +1,7 @@
 <h1>Edit <%= @restaurant.title %></h1>
 
-<form action="/reviews/<%=@restaurant.id %>/edit" method="POST">
-  <input type="hidden" name="_method" value="patch">
+<form action="/reviews/<%=@restaurant.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch"/>
   <label><b>Reviewer's Name:</b></label>
   <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
   <br>
@@ -11,7 +11,7 @@
   <br>
   <br>
   <label><b>Type of Food:</b></label>
-    <select id="food_type" name="food_type">
+    <select id="food_type" name="food_type" value="<%=@restaurant.food_type%>">
         <option value="american">American</option>
         <option value="italian">Italian</option>
         <option value="japanese">Japanese</option>
@@ -25,7 +25,7 @@
     <br>
   <label><b>Review Description:</b></label>
   <br>
-  <textarea type="text"  name="description" rows="10" cols="50" value="<%=@restaurant.description %>"> 
+  <textarea id="description" name="description" rows="10" cols="50" value=<%=@restaurant.description %>> 
   </textarea>
   <br>
   <label><b>Overrall Rating</b></label>
@@ -61,7 +61,7 @@
     <br>
     <br>
     <label><b>Would you recommend this to others?:</b></label>
-    <select id="is_recommended" name="is_recommended">
+    <select id="is_recommended" name="is_recommended" value=<%=@restaurant.is_recommended%>>
         <option value="true">Yes</option>
         <option value="false">No</option>
     </select>
