@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, Proc.new { File.join(root, "../views/") }
+    set :method_override, true
     enable :sessions
     set :session_secret, "FiBrIxPeRg94!"
   end

@@ -1,17 +1,17 @@
 <h1>Edit <%= @restaurant.title %></h1>
 
-<form action="/reviews/<%=@restaurant.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="patch"/>
+<form action="/reviews/<%=@restaurant.id %>" method="get">
   <label><b>Reviewer's Name:</b></label>
-  <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
-  <br>
-  <br>
-  <label><b>Review Title:</b> </label>
-  <input type="text" name="title" value="<%=@restaurant.title %>"> 
-  <br>
-  <br>
-  <label><b>Type of Food:</b></label>
-    <select id="food_type" name="food_type" value="<%=@restaurant.food_type%>">
+    <input type="text" name="person_name" value="<%=@restaurant.person_name %>"> 
+    <br>
+    <br>
+    <label><b>Review Title:</b> </label>
+    <input type="text" name="title" value="<%=@restaurant.title %>"> 
+    <br>
+    <br>
+    <label><b>Type of Food:</b></label>
+    <select id="food_type" name="food_type" input type="option" autofocus>
+    <%=@restaurant.food_type%>
         <option value="american">American</option>
         <option value="italian">Italian</option>
         <option value="japanese">Japanese</option>
@@ -23,12 +23,13 @@
       </select>
     <br>
     <br>
-  <label><b>Review Description:</b></label>
-  <br>
-  <textarea id="description" name="description" rows="10" cols="50" input="<%@restaurant.description %>"> 
-  </textarea>
-  <br>
-  <label><b>Overrall Rating</b></label>
+    <label><b>Previous Review Description:</b></label>
+    <br>
+    <textarea placeholder="Edit your review" name="description" rows="10" cols="50" input type="text"autofocus > 
+    <%=@restaurant.description%>
+    </textarea>
+    <br>
+    <label><b>Overrall Rating:</b></label>
     <br>
     <input type="radio" id="1" name="overrall_rating" value= 1>1
     <input type="radio" id="2" name="overrall_rating" value= 2>2
@@ -37,7 +38,7 @@
     <input type="radio" id="5" name="overrall_rating" value= 5>5
     <br>
     <br>
-  <label><b>Noise Level</b></label>
+    <label><b>Noise Level</b></label>
     <br>
     <input type="radio" id="quiet" name="noise_level" value= "quiet">Quiet
     <input type="radio" id="acceptable" name="noise_level" value= "acceptable">Acceptable
