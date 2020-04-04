@@ -1,12 +1,11 @@
-<%=@restaurant.title%>
-
-<form action="/reviews/<%= @restaurant.id %>/edit" method=get>
-  <input type="submit" value="Edit Review"/>
-</form><br>
-
-<form action="/reviews/<%= @restaurant.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete"/>
-  <input type="submit" value="Delete Review" />
-</form>	
+<h2>Review Title: <%=@restaurant.title%></h2>
+<p><b>Review's Name: </b><%=@restaurant.person_name%></P>
+<p><b>Type of Food We Had: </b><%=@restaurant.food_type%></p>
+<p><b>Description: </b><%=@restaurant.description%></p>
+<p><b>Overrall Rating: </b><%=@restaurant.overrall_rating%></p>
+<p><b>How was the noise Level? </b><%=@restaurant.noise_level%></p>
+<p><b>How was the food quality? </b><%=@restaurant.food_quality%></p>
+<p><b>How was the service? </b><%=@restaurant.service_quality%></p>
+<p><b>Would you recommend this place to others?</b> <%=@restaurant.is_recommended%></p>
 
 <a href="/users/<%=@user.id%>">Home</a>

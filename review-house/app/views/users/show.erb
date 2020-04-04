@@ -1,4 +1,4 @@
-<h1>"Welcome, <%=@user.name%>!"
+<h1>"Welcome, <%=@user.name%>!"</h1>
 
 <h2>Please select an option below:</h2>
 <a href="/reviews">See All User Reviews</a><br>
@@ -12,6 +12,8 @@
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
 <li><%=review.id%> ) <b><%=review.title%></b><br><u><b>Description:</b></u><br><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+<br>
+<a href="/reviews/<%=review.id%>/delete">Delete Review</a>
     </ul>
     <% end %>
 <br>
