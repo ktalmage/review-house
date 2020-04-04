@@ -8,10 +8,10 @@
 <br>
 <b>My Reviews:</b>
 <br>
-<br>
 <% @user.restaurant_reviews.each do |review|%>
     <ul>
-<li><%=review.id%> ) <b><%=review.title%></b><br><u><b>Description:</b></u><br><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
+<br>
+<li><b>Review Title:</b><%=review.title%><br><br/><u><b>Description:</b></u><%=review.description%></li><a href="/reviews/<%=review.id%>/edit">Edit Review</a>
 <br>
 <a href="/reviews/<%=review.id%>/delete">Delete Review</a>
     </ul>
