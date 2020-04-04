@@ -2,7 +2,7 @@ class RestaurantReviewsController < ApplicationController
 
     get "/reviews" do
       if logged_in?
-        @user = current_user
+        # @user = current_user
         @restaurants = RestaurantReview.all
         erb :'reviews/index'
       else
@@ -12,7 +12,7 @@ class RestaurantReviewsController < ApplicationController
 
     get "/reviews/new" do
        if logged_in?
-      @error_message = params[:error]
+      # @error_message = params[:error]
       erb :'reviews/new'
       else
         redirect '/'
@@ -34,6 +34,7 @@ class RestaurantReviewsController < ApplicationController
     end
     
     get "/reviews/:id" do
+     
       if logged_in?
       @restaurant = RestaurantReview.find(params[:id])
       erb :"reviews/show"
@@ -59,12 +60,12 @@ class RestaurantReviewsController < ApplicationController
       find_review
       if params[:id].empty?
         redirect "/reviews/#{@restaurant.id}/edit"
-      end
-        @restaurant.update(params)
+      else
+        @restaurant.update(params["restaurant"])
         @restaurant.save
         redirect "/reviews/#{@restaurant.id}"
       end
-    
+    end
     
     delete '/reviews/:id/delete' do
       if logged_in?
