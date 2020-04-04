@@ -1,7 +1,12 @@
-<h3>Reviews Show</h3>
-<ul>
-<%@restaurants.each do |review|%>
-    <li><a href="/reviews/show"><%=review.title%></a></li>
-    <%end%>
-</ul>
-<a href="/">Home</a>
+<%=@restaurant.title%>
+
+<form action="/reviews/<%= @restaurant.id %>/edit" method=get>
+  <input type="submit" value="Edit Review"/>
+</form><br>
+
+<form action="/reviews/<%= @restaurant.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete"/>
+  <input type="submit" value="Delete Review" />
+</form>	
+
+<a href="/users/<%=@restaurant.id%>">Home</a>

@@ -19,12 +19,6 @@ class RestaurantReviewsController < ApplicationController
       end
     end
 
-    get "/reviews/:id" do
-        
-      @restaurant = RestaurantReview.find(params[:id])
-      erb :"reviews/show"
-    end
-    
     post "/reviews" do
        if logged_in?
         restaurant = RestaurantReview.new(params)
@@ -38,6 +32,16 @@ class RestaurantReviewsController < ApplicationController
         redirect '/'
       end
     end
+    
+    get "/reviews/:id" do
+        
+     if logged_in?
+      @restaurant = RestaurantReview.find(params[:id])
+      erb :"reviews/show"
+     else
+      redirect '/login'
+    end
+  end
     
     get "/reviews/:id/edit" do
       @error_message = params[:error]
