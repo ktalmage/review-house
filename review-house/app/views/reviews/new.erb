@@ -4,7 +4,7 @@
     <label><b>Reviewer's Name:</b> </label>
     <p><input type="text" id="" name="person_name" value=<%=@user.name%>></p>
     <label><b>Review's Title:</b></label>
-    <input type="text" name="title">
+    <input type="text" name="title" placeholder="(Enter restaurant name)">
     <label><b>Type of Food:</b></label>
     <select id="food_type" name="food_type">
         <option value="American">American</option>
@@ -58,8 +58,8 @@
     <br>
     <label><b>Would you recommend this to others?:</b></label>
     <select id="is_recommended" name="is_recommended">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
+        <option id="true" value="true">Yes</option>
+        <option id="false" value="false">No</option>
     </select>
     <input type="submit" value="Submit">
     </form>
