@@ -57,7 +57,7 @@ class RestaurantReviewsController < ApplicationController
     
     patch "/reviews/:id" do
       find_review
-      if params[:description].empty?
+      if params[:id].empty?
         redirect "/reviews/#{@restaurant.id}/edit"
       else
         @restaurant = RestaurantReview.find_by_id(params[:id])
