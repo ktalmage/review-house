@@ -61,7 +61,14 @@ class RestaurantReviewsController < ApplicationController
       if params[:id].empty?
         redirect "/reviews/#{@restaurant.id}/edit"
       else
-        @restaurant.update(params["restaurant"])
+        @restaurant = RestaurantReview.find_by_id(params[:id])
+        @restaurant.person_name = params[:person_name]
+        @restaurant.title = params[:title]
+        @restaurant.food_type = params[:food_type]
+        @restaurant.noise_level = params[:noise_level]
+        @restaurant.food_quality = params[:food_quality]
+        @restaurant.service_quality = params[:service_quality]
+        @restaurant.is_recommended = params[:is_recommended]
         @restaurant.save
         redirect "/reviews/#{@restaurant.id}"
       end
@@ -70,21 +77,16 @@ class RestaurantReviewsController < ApplicationController
     delete '/reviews/:id/delete' do
       if logged_in?
         find_review
-      if @restaurant.user == current_user(session)
-        @restaurant = RestaurantReview.find_by_id(params[:id])
         @restaurant.delete
         redirect to '/reviews'
       else
         redirect to "/"
       end
-      else
-        redirect to '/login'
-      end
-    end
+     end
   
     private
 
     def find_review
       @restaurant = RestaurantReview.find_by_id(params[:id])
     end
-    end
+end

@@ -15,9 +15,9 @@
 <input type="submit" value="Edit Review">
 </form>
 <br>
-<form action="/reviews/<%=review.id%>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete"/>
-    <input type="submit" value="Delete Review"/>
+<form action="/reviews/<%=review.id%>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Review">
     </ul>
 </form>
     <% end %>
