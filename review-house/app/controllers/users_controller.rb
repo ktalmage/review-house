@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         redirect "/users/#{session[:user_id]}"
       end
     end
-
+  
     get '/login' do
       @error_message = params
       if !session[:user_id]
