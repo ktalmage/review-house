@@ -20,8 +20,7 @@ class RestaurantReviewsController < ApplicationController
 
     post "/reviews" do
        if logged_in?
-        restaurant = RestaurantReview.new(params)
-        restaurant.user_id = current_user.id
+        restaurant = current_user.restaurant_reviews.build(params)
         if restaurant.save
         redirect "/reviews/#{restaurant.id}"
         else
@@ -47,7 +46,7 @@ class RestaurantReviewsController < ApplicationController
       redirect to '/login'
      end
      find_review
-     if @restaurant.user_id = current_user.id
+     if @restaurant.user_id == current_user.id
       erb :'/reviews/edit'
      else
       redirect to '/login'
